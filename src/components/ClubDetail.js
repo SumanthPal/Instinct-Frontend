@@ -70,40 +70,40 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-[100vw] mx-auto px-2 py-8">
+      <div className="max-w-[100vw] mx-auto px-4 sm:px-6 py-8">
         {/* Header Section */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center space-x-6">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden">
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-8">
+          <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden">
               <Image
                 src={clubData["Profile Picture"]}
                 alt={clubData["Club Name"]}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 128px, 128px"
+                sizes="(max-width: 768px) 96px, 128px"
                 priority
               />
             </div>
-            <div>
-              <h1 className="text-5xl font-bold mb-2 text-gray-900 dark:text-dark-subtext">
+            <div className="text-center sm:text-left">
+              <h1 className="text-3xl sm:text-5xl font-bold mb-2 text-gray-900 dark:text-dark-subtext">
                 {clubData["Club Name"]}
               </h1>
-              <div className="text-2xl flex space-x-10 text-gray-950 dark:text-dark-text-white mb-2">
+              <div className="text-lg sm:text-2xl flex flex-col sm:flex-row sm:space-x-10 text-gray-950 dark:text-dark-text-white mb-2">
                 <span>{clubData.Followers} followers</span>
                 <span>{clubData.Following} following</span>
                 <span>{clubData["Post Count"]} posts</span>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex justify-center sm:justify-start gap-2">
                 <a
                   href={`https://instagram.com/${clubData["Instagram Handle"]}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center px-4 py-4 rounded-full border border-transparent hover:border-white/20 transform transition-all duration-300 ease-in-out hover:scale-105 text-gray-800 dark:text-dark-subtext bg-white dark:bg-dark-profile-card"
+                  className="flex items-center px-4 py-2 rounded-full border border-transparent hover:border-white/20 transform transition-all duration-300 ease-in-out hover:scale-105 text-gray-800 dark:text-dark-subtext bg-white dark:bg-dark-profile-card"
                 >
-                  <FaInstagram className="w-10 h-10" />
+                  <FaInstagram className="w-6 h-6 sm:w-10 sm:h-10" />
                 </a>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-2">
                 {clubData.categories?.map((category, index) => (
                   <span
                     key={index}
@@ -118,14 +118,14 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
         </div>
         {/* Description */}
         <div className="mb-8 px-4 py-4 rounded-lg">
-          <p className="text-gray-700 dark:text-gray-300 text-3xl">
+          <p className="text-gray-700 dark:text-gray-300 text-lg sm:text-3xl">
             {extractQuotedContent(clubData.Description[0]) || ""}
           </p>
         </div>
         {/* Links and Calendar Card */}
-        <Card className="mb-8 p-6 bg-white dark:bg-dark-card border border-gray-100 dark:border-gray-700 rounded-lg shadow-md">
+        <Card className="mb-8 p-4 sm:p-6 bg-white dark:bg-dark-card border border-gray-100 dark:border-gray-700 rounded-lg shadow-md">
           <CardContent>
-            <h2 className="text-4xl font-semibold mb-4 text-gray-900 dark:text-dark-text">
+            <h2 className="text-2xl sm:text-4xl font-semibold mb-4 text-gray-900 dark:text-dark-text">
               Club Links
             </h2>
             <ul className="space-y-3 mb-6">
@@ -135,10 +135,10 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                     href={linkData.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-3 p-10 rounded-lg bg-gray-100 dark:bg-dark-profile-card text-dark-base hover:bg-gray-200 dark:hover:bg-dark-gradient-start transform transition-all duration-300 ease-in-out hover:scale-105 dark:text-gray-200"
+                    className="flex items-center space-x-3 p-4 sm:p-6 rounded-lg bg-gray-100 dark:bg-dark-profile-card text-dark-base hover:bg-gray-200 dark:hover:bg-dark-gradient-start transform transition-all duration-300 ease-in-out hover:scale-105 dark:text-gray-200"
                   >
                     <FaLink className="w-4 h-4 flex-shrink-0 font-bold" />
-                    <span className="text-3xl font-bold truncate">
+                    <span className="text-lg sm:text-2xl font-bold truncate">
                       {linkData.text.length > 40
                         ? `${linkData.text.substring(0, 40)}...`
                         : linkData.text}
@@ -148,23 +148,23 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
               ))}
             </ul>
             {/* Calendar Actions */}
-            <div className="flex flex-wrap gap-3 mt-6">
+            <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <Button
                 onClick={() => window.open(calendarUrl)}
-                className="flex items-center space-x-2 px-10 py-5 rounded-full bg-gray-100 dark:bg-dark-profile-card hover:bg-gray-200 dark:hover:bg-dark-gradient-start transform transition-all duration-300 ease-in-out hover:scale-105"
+                className="flex items-center justify-center space-x-2 px-4 py-3 sm:px-6 sm:py-4 rounded-full bg-gray-100 dark:bg-dark-profile-card hover:bg-gray-200 dark:hover:bg-dark-gradient-start transform transition-all duration-300 ease-in-out hover:scale-105"
               >
-                <FaDownload className="w-10 h-10 text-dark-base dark:text-gray-200" />
-                <span className="text-3xl font-bold text-dark-text dark:text-gray-200">Download Calendar</span>
+                <FaDownload className="w-6 h-6 sm:w-8 sm:h-8 text-dark-base dark:text-gray-200" />
+                <span className="text-lg sm:text-2xl font-bold text-dark-text dark:text-gray-200">Download Calendar</span>
               </Button>
               <Button
                 onClick={() => {
                   const subscribeUrl = calendarUrl.replace("https", "webcal");
                   window.open(subscribeUrl);
                 }}
-                className="flex items-center space-x-2 px-10 py-5 rounded-full bg-gray-100 dark:bg-dark-profile-card hover:bg-gray-200 dark:hover:bg-dark-gradient-start transform transition-all duration-300 ease-in-out hover:scale-105 text-dark-base dark:text-gray-200 font-bold"
+                className="flex items-center justify-center space-x-2 px-4 py-3 sm:px-6 sm:py-4 rounded-full bg-gray-100 dark:bg-dark-profile-card hover:bg-gray-200 dark:hover:bg-dark-gradient-start transform transition-all duration-300 ease-in-out hover:scale-105 text-dark-base dark:text-gray-200 font-bold"
               >
-                <FaGlobe className="w-10 h-10 text-dark-base dark:text-gray-200" />
-                <span className="text-3xl font-bold text-dark-text dark:text-gray-200">Subscribe to Calendar</span>
+                <FaGlobe className="w-6 h-6 sm:w-8 sm:h-8 text-dark-base dark:text-gray-200" />
+                <span className="text-lg sm:text-2xl font-bold text-dark-text dark:text-gray-200">Subscribe to Calendar</span>
               </Button>
             </div>
           </CardContent>
@@ -172,14 +172,14 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
         {/* Grid of Posts */}
         <Card className="mb-8 bg-white dark:bg-dark-card">
           <CardContent>
-            <h2 className="text-4xl font-semibold mb-4 text-gray-900 dark:text-dark-text">
+            <h2 className="text-2xl sm:text-4xl font-semibold mb-4 text-gray-900 dark:text-dark-text">
               Posts
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {clubPosts.map((post, index) => (
                 <div key={index} className="flex flex-col">
                   {post.Picture ? (
-                    <div className="relative w-full h-[400px]">
+                    <div className="relative w-full h-48 sm:h-64 lg:h-80">
                       <Image
                         src={post.Picture}
                         alt="Post Image"
@@ -190,7 +190,7 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                       />
                     </div>
                   ) : (
-                    <div className="w-full h-[400px] bg-gray-300 dark:bg-[#4D4855] flex items-center justify-center rounded-lg">
+                    <div className="w-full h-48 sm:h-64 lg:h-80 bg-gray-300 dark:bg-[#4D4855] flex items-center justify-center rounded-lg">
                       <svg
                         className="w-16 h-16 text-gray-400 dark:text-gray-500"
                         fill="none"
@@ -208,13 +208,13 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                     </div>
                   )}
                   {post.Caption && (
-                    <p className="mt-2 text-gray-600 dark:text-dark-text line-clamp-2">
+                    <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-dark-text line-clamp-2">
                       {post.Caption}
                     </p>
                   )}
                   {post.Parsed?.[0]?.Date && (
                     <div className="mt-2">
-                      <p className="text-2xl text-gray-500 dark:text-dark-gradient-start">
+                      <p className="text-sm sm:text-base text-gray-500 dark:text-dark-gradient-start">
                         {new Date(post.Parsed[0].Date).toLocaleDateString()}
                       </p>
                     </div>
@@ -226,9 +226,9 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
         </Card>
         {/* Calendar Widget */}
         <div className="mb-8">
-          <Card className="mb-8 bg-white dark:bg-dark-card dark:text-dark-text h-[975px]">
+          <Card className="mb-8 bg-white dark:bg-dark-card dark:text-dark-text h-auto sm:h-[975px]">
             <CardContent>
-              <h2 className="text-4xl font-semibold mb-4 text-gray-900 dark:text-dark-text">
+              <h2 className="text-2xl sm:text-4xl font-semibold mb-4 text-gray-900 ">
                 Calendar w/ Events
               </h2>
               <div className="flex justify-center items-center h-full mt-4">
@@ -236,7 +236,7 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                   onChange={handleDateChange}
                   value={selectedDate}
                   tileContent={tileContent}
-                  className="transform transition-all duration-300 ease-in-out hover:scale-105 dark:bg-dark-profile-card hover:bg-gray-400 font-bold text-4xl text-gray-900 dark:text-white rounded-lg shadow-md w-full h-[90%]"
+                  className="transform transition-all duration-300 ease-in-out hover:scale-105  hover:bg-gray-400 font-bold text-lg sm:text-2xl text-gray-900 dark:text-white rounded-lg shadow-md w-full h-full"
                   tileClassName={({ date, view }) => {
                     if (
                       view === "month" &&
@@ -264,19 +264,19 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                 className="mb-4 bg-white dark:bg-dark-card dark:text-dark-text w-full"
               >
                 <CardContent>
-                  <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-dark-text">
+                  <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-900 dark:text-dark-text">
                     {post.Parsed?.[0]?.Name || "Untitled Event"}
                   </h2>
-                  <p className="text-gray-700 dark:text-dark-base mb-4 text-lg md:text-xl lg:text-2xl">
+                  <p className="text-sm sm:text-base text-gray-700 dark:text-dark-base mb-4">
                     {post.Parsed?.[0]?.Details || "No details available"}
                   </p>
-                  <p className="text-gray-700 dark:text-dark-base mb-4 text-lg md:text-xl lg:text-2xl">
+                  <p className="text-sm sm:text-base text-gray-700 dark:text-dark-base mb-4">
                     {post.Parsed?.[0]?.Date
                       ? format(new Date(post.Parsed[0].Date), "PPpp")
                       : "No date available"}
                   </p>
                   {post.Picture && (
-                    <div className="relative w-full h-96 rounded-lg overflow-hidden">
+                    <div className="relative w-full h-48 sm:h-64 rounded-lg overflow-hidden">
                       <Image
                         src={post.Picture}
                         alt={post.Parsed?.[0]?.Name || "Event Image"}
@@ -290,10 +290,10 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
             ))
           ) : (
             <Card className="mb-4 bg-white dark:bg-dark-card dark:text-dark-text w-full">
-              <CardContent className="flex flex-col items-center justify-center h-64 w-full">
+              <CardContent className="flex flex-col items-center justify-center h-48 sm:h-64 w-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-24 w-24 text-gray-500 dark:text-dark-text"
+                  className="h-16 w-16 text-gray-500 dark:text-dark-text"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -305,7 +305,7 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                     d="M3 7h18M3 12h18M3 17h18"
                   />
                 </svg>
-                <p className="text-gray-700 dark:text-dark-text mt-4 text-lg md:text-xl lg:text-2xl">
+                <p className="text-sm sm:text-base text-gray-700 dark:text-dark-text mt-4">
                   No posts available
                 </p>
               </CardContent>
