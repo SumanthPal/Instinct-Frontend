@@ -43,7 +43,7 @@ export default function TypingAnimation() {
   }, [currentPhrase, isDeleting, phraseIndex, typingSpeed]);
 
   return (
-    <div className="text-5xl text-gray-700 dark:text-dark-subtext mb-8">
+    <div className="text-2xl sm:text-4xl md:text-5xl text-gray-700 dark:text-dark-subtext mb-8">
       <span>{currentPhrase}</span>
       <span className="blinking-cursor">|</span>
     </div>

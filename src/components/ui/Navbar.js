@@ -49,13 +49,13 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link href="/" className="block px-3 py-2 text-lg text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <Link href="/" className="block px-3 py-2 text-3xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">
                 Home
               </Link>
-              <Link href="/about" className="block px-3 py-2 text-lg text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <Link href="/about" className="block px-3 py-2 text-3xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">
                 About
               </Link>
-              <button className="block w-full text-left px-3 py-2 text-lg text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">
+              <button className="block w-full text-left px-3 py-2 text-3xl text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white transition-colors">
                 Clubs
               </button>
               <div className="px-3 py-2">

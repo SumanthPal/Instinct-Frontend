@@ -62,22 +62,28 @@ export default function HomeClient({ detailedClubs, reloadDataJob }) {
       <main className="w-full px-4 py-24 flex flex-col items-center justify-center text-center">
         <div className="hero min-h-screen flex flex-col items-center justify-center dark:b dark:text-dark-text z-10">
           <div className="flex items-center justify-center space-x-4">
-            <h1 className="text-6xl sm:text-9xl font-bold mb-4 text-gray-900 dark:text-dark-card">
+            <h1
+              className="font-bold mb-4 text-gray-900 dark:text-dark-card"
+              style={{
+                fontSize: "clamp(2.5rem, 10vw, 6rem)", // Adjust values as needed
+              }}
+            >
               Instinct
             </h1>
-            <div className="px-3 py-1 sm:px-4 sm:py-2 bg-indigo-600 text-white text-lg sm:text-2xl font-bold rounded-full shadow-md transform rotate-12">
-              Alpha 0.1.9
-            </div>
           </div>
 
-          <div className="h-8 sm:h-12 flex items-center justify-center">
+          {/* Typing Animation with Fixed Height */}
+          <div className="h-12 sm:h-16 flex items-center justify-center">
             <TypingAnimation />
           </div>
-          <div className="mt-4 text-base sm:text-lg text-gray-700 dark:text-gray-300">
+
+          {/* Responsive "Next Data Update" Text */}
+          <div className="mt-4 text-sm sm:text-lg text-gray-700 dark:text-gray-300">
             Next data update: {formatNextRunTime(reloadDataJob.next_run_time)}
           </div>
 
-          <div className="flex-col items-start w-full mx-auto px-4 sm:px-0">
+          {/* Search Bar and Category Filter */}
+          <div className="flex flex-col items-start w-full max-w-full mx-auto px-4 sm:px-0">
             <SearchBar
               value={searchInput}
               onChange={handleSearchChange}
@@ -119,6 +125,7 @@ export default function HomeClient({ detailedClubs, reloadDataJob }) {
           </div>
         </div>
 
+        {/* Club Cards Grid */}
         <div
           ref={clubsRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mt-8 w-full px-4 sm:px-0"
@@ -143,6 +150,7 @@ export default function HomeClient({ detailedClubs, reloadDataJob }) {
           )}
         </div>
 
+        {/* Load More Button */}
         <button
           onClick={handleLoadMore}
           className="mt-8 opacity-95 px-4 sm:px-8 py-2 sm:py-4 text-lg sm:text-3xl font-bold bg-dark-text-white text-black rounded-xl dark:bg-dark-card dark:hover:shadow-lg hover:bg-violet-300 transition-all duration-300"

@@ -14,7 +14,10 @@ export default function SearchBar({ value, onChange, onEnter }) {
       value={value}
       onChange={onChange}
       onKeyDown={handleKeyDown}
-      className="mb-8 p-6 px-40 text-4xl font-semibold dark:to-dark-gradient-start border border-gray-300 rounded-full w-[900px] shadow-md" // Fixed width
+      className="w-full p-5 text-3xl font-semibold border border-gray-300 rounded-full shadow-md 
+        focus:outline-none focus:ring-2 focus:ring-lavender
+        transition-all duration-300 ease-in-out
+        sm:p-6 sm:text-4xl"
     />
   );
 }
