@@ -1,0 +1,161 @@
+/* Increase font size for days of the week and numbers */
+.react-calendar__month-view__weekdays,
+.react-calendar__tile {
+  font-size: 1.5rem; /* Adjust as needed */
+  min-height: 80px; /* Increase tile size */
+}
+
+/* Change title section color and increase font size */
+.react-calendar__navigation button {
+  color: var(--primary);
+  background-color: var(--secondary);
+  font-size: 2rem; /* Adjust as needed */
+}
+
+/* Increase size and spacing of chevrons */
+.react-calendar__navigation button:disabled {
+  color: var(--primary);
+}
+
+.react-calendar__navigation button svg {
+  width: 2rem; /* Increase size */
+  height: 2rem; /* Increase size */
+}
+
+.react-calendar__navigation button:first-child {
+  margin-right: 0.5rem; /* Adjust spacing */
+}
+
+.react-calendar__navigation button:last-child {
+  margin-left: 0.5rem; /* Adjust spacing */
+}
+
+/* Adjust background color for light mode */
+.react-calendar {
+  background-color: #e0f7fa; /* Light mode background */
+  color: var(--foreground);
+  width: 100%; /* Ensure full width */
+  max-width: 800px; /* Set max width */
+  height: 600px; /* Set fixed height */
+  margin: 0 auto; /* Center the calendar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  border-radius: 8px; /* Add rounded corners */
+  padding-top: 20px; /* Add padding to lower navigation */
+}
+
+/* Adjust chevron placement */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Add margin to lower navigation */
+}
+
+.react-calendar__navigation button {
+  flex: 1;
+  text-align: center;
+}
+
+.react-calendar__navigation button:first-child,
+.react-calendar__navigation button:last-child {
+  flex: 0;
+}
+
+/* Adjust days of the week positioning */
+.react-calendar__month-view__weekdays {
+  margin-top: 20px; /* Add margin to lower days of the week */
+}
+
+/* Adjust background color for light mode */
+.react-calendar__tile {
+  background-color: #ffffff; /* Light mode tile background */
+  color: var(--foreground);
+  width: 100px; /* Set fixed width */
+  height: 100px; /* Set fixed height */
+}
+
+.react-calendar__tile--now {
+  background: #ffeb3b; /* Current day background color */
+  color: #000000;
+}
+
+.react-calendar__tile--active {
+  background: #4caf50; /* Selected day background color */
+  color: #ffffff;
+}
+
+.react-calendar__tile--hasActive {
+  background: #81c784; /* Background for days with active events */
+}
+
+.react-calendar__tile--highlight {
+  background: #ff9800; /* Highlighted day background color */
+}
+
+.react-calendar__tile--highlight:hover {
+  background: #ffb74d; /* Hover color for highlighted day */
+}
+
+/* Hover effect for calendar tiles */
+.react-calendar__tile:hover {
+  background-color: #d1e7dd; /* Light mode hover color */
+  color: #000000;
+}
+
+.dark .react-calendar {
+  background-color: #2a2a2a; /* Lighter dark mode background */
+  color: var(--dark-text-white);
+  width: 100%; /* Ensure full width */
+  max-width: 800px; /* Set max width */
+  height: 600px; /* Set fixed height */
+  margin: 0 auto; /* Center the calendar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow for dark mode */
+  border-radius: 8px; /* Add rounded corners */
+  padding-top: 20px; /* Add padding to lower navigation */
+}
+
+.dark .react-calendar__tile {
+  background-color: #3a3a3a; /* Lighter dark mode tile background */
+  color: var(--dark-text-white);
+  width: 100px; /* Set fixed width */
+  height: 100px; /* Set fixed height */
+}
+
+.dark .react-calendar__tile--now {
+  background: #ffeb3b; /* Current day background color */
+  color: #000000;
+}
+
+.dark .react-calendar__tile--active {
+  background: #4caf50; /* Selected day background color */
+  color: #ffffff;
+}
+
+.dark .react-calendar__tile--hasActive {
+  background: #81c784; /* Background for days with active events */
+}
+
+.dark .react-calendar__tile--highlight {
+  background: #ff9800; /* Highlighted day background color */
+}
+
+.dark .react-calendar__tile--highlight:hover {
+  background: #ffb74d; /* Hover color for highlighted day */
+}
+
+/* Hover effect for dark mode calendar tiles */
+.dark .react-calendar__tile:hover {
+  background-color: #4a4a4a; /* Dark mode hover color */
+  color: #ffffff;
+}
+
+/* Indicator styling for both modes */
+.indicator {
+  background-color: var(--primary); /* Light mode color */
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 2px;
+}
+
