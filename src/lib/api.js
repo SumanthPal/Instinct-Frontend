@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://127.0.0.1:8000/';
+const API_BASE_URL = 'https://rocky-eyrie-73493-0fd3b2ef381b.herokuapp.com/';
 
 export const fetchClubManifest = async () => {
     try {
