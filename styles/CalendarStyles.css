@@ -17,6 +17,11 @@
   font-size: 1rem; /* Default font size */
   min-height: 40px; /* Default tile size */
 }
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 /* Change title section color and increase font size */
 .react-calendar__navigation button {
@@ -27,21 +32,18 @@
 
 /* Increase size and spacing of chevrons */
 .react-calendar__navigation button svg {
-  width: 2rem; /* Increased size */
-  height: 2rem; /* Increased size */
+  width: 1.5rem; /* Default size */
+  height: 1.5rem; /* Default size */
 }
 
 .react-calendar__navigation button:first-child {
   margin-right: 3rem; /* Move the left chevron farther from the month */
 }
+
 .react-calendar__navigation button:last-child {
   margin-left: 3rem; /* Move the right chevron farther from the month */
 }
-.react-calendar__navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 /* Adjust background color for light mode */
 .react-calendar__tile {
   background-color: #ffffff; /* Light mode tile background */
@@ -123,8 +125,8 @@
   }
 
   .react-calendar__navigation button svg {
-    width: 1.5rem; /* Smaller chevron size for mobile */
-    height: 1.5rem; /* Smaller chevron size for mobile */
+    width: 1.25rem; /* Smaller chevron size for mobile */
+    height: 1.25rem; /* Smaller chevron size for mobile */
   }
 
   .react-calendar__tile {

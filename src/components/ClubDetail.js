@@ -6,7 +6,13 @@ import { getCalendarUrl } from "@/lib/api";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import Calendar from "react-calendar";
-import { FaDownload, FaGlobe, FaInstagram, FaLink, FaExternalLinkAlt } from "react-icons/fa";
+import {
+  FaDownload,
+  FaGlobe,
+  FaInstagram,
+  FaLink,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
 import "../../styles/CalendarStyles.css";
 import "./ui/Footer";
 import Loading from "@/app/loading"; // Import the Loading component
@@ -16,6 +22,19 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [clubPosts, setClubPosts] = useState(initialClubPosts || []); // Initialize with initialClubPosts
   const [isLoading, setIsLoading] = useState(!initialClubPosts); // Set loading state based on initialClubPosts
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageClick = (imageUrl) => {
+    console.log("Clicked image URL:", imageUrl); // Debugging
+    setSelectedImage(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
 
   // Fetch posts if not provided initially
   useEffect(() => {
@@ -23,7 +42,9 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
       const fetchPosts = async () => {
         setIsLoading(true);
         try {
-          const response = await fetch(`/api/club-posts?username=${clubData["Instagram Handle"]}`);
+          const response = await fetch(
+            `/api/club-posts?username=${clubData["Instagram Handle"]}`
+          );
           const data = await response.json();
           setClubPosts(data);
         } catch (error) {
@@ -43,7 +64,8 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
   const postsOnSelectedDate = clubPosts.filter(
     (post) =>
       post.Parsed?.[0]?.Date &&
-      new Date(post.Parsed[0].Date).toDateString() === selectedDate.toDateString()
+      new Date(post.Parsed[0].Date).toDateString() ===
+        selectedDate.toDateString()
   );
 
   const tileContent = ({ date, view }) => {
@@ -129,7 +151,7 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
               Club Links
             </h2>
             <ul className="space-y-3 mb-6">
-              {clubData['Club Links'].map((linkData, index) => (
+              {clubData["Club Links"].map((linkData, index) => (
                 <li key={index}>
                   <a
                     href={linkData.url}
@@ -154,7 +176,9 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                 className="flex items-center justify-center space-x-2 px-4 py-3 sm:px-6 sm:py-4 rounded-full bg-gray-100 dark:bg-dark-profile-card hover:bg-gray-200 dark:hover:bg-dark-gradient-start transform transition-all duration-300 ease-in-out hover:scale-105"
               >
                 <FaDownload className="w-6 h-6 sm:w-8 sm:h-8 text-dark-base dark:text-gray-200" />
-                <span className="text-lg sm:text-2xl font-bold text-dark-text dark:text-gray-200">Download Calendar</span>
+                <span className="text-lg sm:text-2xl font-bold text-dark-text dark:text-gray-200">
+                  Download Calendar
+                </span>
               </Button>
               <Button
                 onClick={() => {
@@ -164,7 +188,9 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                 className="flex items-center justify-center space-x-2 px-4 py-3 sm:px-6 sm:py-4 rounded-full bg-gray-100 dark:bg-dark-profile-card hover:bg-gray-200 dark:hover:bg-dark-gradient-start transform transition-all duration-300 ease-in-out hover:scale-105 text-dark-base dark:text-gray-200 font-bold"
               >
                 <FaGlobe className="w-6 h-6 sm:w-8 sm:h-8 text-dark-base dark:text-gray-200" />
-                <span className="text-lg sm:text-2xl font-bold text-dark-text dark:text-gray-200">Subscribe to Calendar</span>
+                <span className="text-lg sm:text-2xl font-bold text-dark-text dark:text-gray-200">
+                  Subscribe to Calendar
+                </span>
               </Button>
             </div>
           </CardContent>
@@ -179,7 +205,10 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
               {clubPosts.map((post, index) => (
                 <div key={index} className="flex flex-col">
                   {post.Picture ? (
-                    <div className="relative w-full h-48 sm:h-64 lg:h-80">
+                    <div
+                      className="relative w-full h-48 sm:h-64 lg:h-80 cursor-pointer"
+                      onClick={() => handleImageClick(post.Picture)}
+                    >
                       <Image
                         src={post.Picture}
                         alt="Post Image"
@@ -223,6 +252,29 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
               ))}
             </div>
           </CardContent>
+
+          {/* Modal for Enlarged Image */}
+          {isModalOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+              <div className="relative max-w-4xl w-full p-4">
+                <button
+                  onClick={closeModal}
+                  className="absolute top-4 right-4 text-white text-2xl bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-75"
+                >
+                  &times;
+                </button>
+                <div className="relative w-full h-[80vh]">
+                  <Image
+                    src={selectedImage}
+                    alt="Enlarged Post"
+                    fill
+                    className="rounded-lg object-contain" /* Use object-contain to fit the image */
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </Card>
         {/* Calendar Widget */}
         <div className="mb-8">
@@ -244,7 +296,7 @@ export default function ClubDetail({ clubData, initialClubPosts }) {
                         (post) =>
                           post.Parsed?.[0]?.Date &&
                           new Date(post.Parsed[0].Date).toDateString() ===
-                          date.toDateString()
+                            date.toDateString()
                       )
                     ) {
                       return "highlight";
