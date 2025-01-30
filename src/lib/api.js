@@ -13,6 +13,7 @@ export const fetchClubManifest = async () => {
     } catch (error) {
       console.error('Error fetching club manifest:', error);
       throw error;
+      //need to push
     }
   };
 
